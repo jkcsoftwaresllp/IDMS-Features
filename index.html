@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feature List Visualization</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      color: #2d3748;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .header .subtitle {
+      color: #718096;
+      font-size: 1.1rem;
+    }
+
+    .architecture {
+      background: #f7fafc;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-left: 4px solid #4299e1;
+    }
+
+    .architecture h3 {
+      color: #2d3748;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .module-structure {
+      font-family: 'Courier New', monospace;
+      background: #2d3748;
+      color: #e2e8f0;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 30px;
+    }
+
+    .section {
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .section-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      font-size: 1.2rem;
+      color: white;
+    }
+
+    .inventory {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+
+    .distributorship {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+    }
+
+    .operational {
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+    }
+
+    .analytics {
+      background: linear-gradient(135deg, #43e97b, #38f9d7);
+    }
+
+    .customer-portal {
+      background: linear-gradient(135deg, #fa709a, #fee140);
+    }
+
+    .order-portal {
+      background: linear-gradient(135deg, #a8edea, #fed6e3);
+    }
+
+    .section-title {
+      color: #2d3748;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .subsection {
+      margin-bottom: 25px;
+    }
+
+    .subsection-title {
+      color: #4a5568;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+    }
+
+    .subsection-title::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: #4299e1;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .feature-list {
+      list-style: none;
+    }
+
+    .feature-item {
+      padding: 8px 0;
+      color: #2d3748;
+      font-size: 0.95rem;
+      position: relative;
+      padding-left: 20px;
+      line-height: 1.4;
+      transition: all 0.2s ease;
+    }
+
+    .feature-item::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #4299e1;
+      font-weight: bold;
+    }
+
+    .feature-item:hover {
+      color: #4299e1;
+      transform: translateX(5px);
+    }
+
+    .warning {
+      background: #fed7d7;
+      border: 1px solid #fc8181;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      color: #c53030;
+      font-weight: 500;
+    }
+
+    .warning::before {
+      content: '⚠️ ';
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .sections {
+        grid-template-columns: 1fr;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Inventory & Distribution Management System</h1>
+      <div class="subtitle">Comprehensive Feature Specification</div>
+    </div>
+
+    <div class="architecture">
+      <h3>System Architecture</h3>
+      <div class="module-structure">src/
+        ├── modules/
+        │ ├── system/
+        │ │ ├── Auth/
+        │ │ ├── Organization/
+        │ │ ├── Subscription/
+        │ │ ├── Demo/
+        │ │ └── Audit/
+        │ ├── operations/
+        │ │ ├── Product/
+        │ │ ├── Inventory/
+        │ │ ├── Customer/
+        │ │ ├── Supplier/
+        │ │ ├── Transport/
+        │ │ ├── Offer/
+        │ │ ├── Channel/
+        │ │ └── Audit/
+        │ ├── sales/
+        │ │ ├── Customer-Portal/
+        │ │ │ ├── ProductView/
+        │ │ │ ├── Profile/
+        │ │ │ ├── Wishlist/
+        │ │ │ └── Support/
+        │ │ └── Order-Portal/
+        │ │ ├── Order/
+        │ │ ├── OrderTracking/
+        │ │ ├── Checkout/
+        │ │ ├── Invoice/
+        │ │ ├── Returns/
+        │ │ ├── Notifications/
+        │ │ └── Ads/
+        │ └── analytics/
+        │ ├── Dashboard/
+        │ └── Reports/
+        └── common/</div>
+    </div>
+
+    <div class="sections">
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon inventory">⚙️</div>
+          <div class="section-title">System Module</div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Authentication & Authorization</div>
+          <ul class="feature-list">
+            <li class="feature-item">Platform users management</li>
+            <li class="feature-item">Organization users management</li>
+            <li class="feature-item">RBAC system implementation</li>
+            <li class="feature-item">Multi-tenant authentication</li>
+            <li class="feature-item">Session management</li>
+            <li class="feature-item">Two-factor authentication</li>
+            <li class="feature-item">API key management</li>
+            <li class="feature-item">Password reset functionality</li>
+          </ul>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Organization & Subscription</div>
+          <ul class="feature-list">
+            <li class="feature-item">Multi-tenant data isolation</li>
+            <li class="feature-item">Organization provisioning</li>
+            <li class="feature-item">Subscription plan management</li>
+            <li class="feature-item">Usage tracking and limits</li>
+            <li class="feature-item">Payment processing integration</li>
+            <li class="feature-item">Billing cycle management</li>
+            <li class="feature-item">Trial-to-paid conversion</li>
+          </ul>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Demo & Audit</div>
+          <ul class="feature-list">
+            <li class="feature-item">Demo environment automation</li>
+            <li class="feature-item">Sample data seeding</li>
+            <li class="feature-item">System-wide audit trails</li>
+            <li class="feature-item">Compliance logging</li>
+            <li class="feature-item">Security incident logging</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon operational">📦</div>
+          <div class="section-title">Operations Module</div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Product & Inventory</div>
+          <ul class="feature-list">
+            <li class="feature-item">Create product catalog</li>
+            <li class="feature-item">Add products with variants</li>
+            <li class="feature-item">SKU management</li>
+            <li class="feature-item">Add warehouses</li>
+            <li class="feature-item">Inventory batch management</li>
+            <li class="feature-item">Stock level tracking</li>
+            <li class="feature-item">Inventory transfers</li>
+            <li class="feature-item">Stock alerts and notifications</li>
+          </ul>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Customer & Supplier Management</div>
+          <ul class="feature-list">
+            <li class="feature-item">Customer profile management</li>
+            <li class="feature-item">CRM integration</li>
+            <li class="feature-item">Customer blacklist management</li>
+            <li class="feature-item">Supplier management</li>
+            <li class="feature-item">Supplier performance tracking</li>
+            <li class="feature-item">Transport partner management</li>
+            <li class="feature-item">Purchase order management</li>
+          </ul>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Offers & Communication</div>
+          <ul class="feature-list">
+            <li class="feature-item">Promotional offers creation</li>
+            <li class="feature-item">Offer scheduling</li>
+            <li class="feature-item">Coupon code generation</li>
+            <li class="feature-item">Inter-organization channels</li>
+            <li class="feature-item">Team collaboration tools</li>
+            <li class="feature-item">Operational audit trails</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon analytics">📊</div>
+          <div class="section-title">Analytics & Reporting</div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Report Types</div>
+          <ul class="feature-list">
+            <li class="feature-item">Stock & Sales Summary</li>
+            <li class="feature-item">Supplier performance</li>
+            <li class="feature-item">Invoice (search by inv. no.)</li>
+            <li class="feature-item">Customer Purchase</li>
+            <li class="feature-item">Expenses</li>
+            <li class="feature-item">Stock Issues</li>
+            <li class="feature-item">Credit</li>
+            <li class="feature-item">Sales</li>
+            <li class="feature-item">Revenue</li>
+            <li class="feature-item">HSN</li>
+          </ul>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Report Features</div>
+          <ul class="feature-list">
+            <li class="feature-item">Export to PDF/CSV</li>
+            <li class="feature-item">Show selected columns</li>
+            <li class="feature-item">Search rows</li>
+            <li class="feature-item">Select Date range</li>
+            <li class="feature-item">Sort table</li>
+            <li class="feature-item">Pagination</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon customer-portal">🛒</div>
+          <div class="section-title">Sales Module</div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Customer Portal</div>
+          <ul class="feature-list">
+            <li class="feature-item">Product catalog browsing</li>
+            <li class="feature-item">Advanced product search & filtering</li>
+            <li class="feature-item">Product comparison</li>
+            <li class="feature-item">Wishlist management</li>
+            <li class="feature-item">Customer profile management</li>
+            <li class="feature-item">Order history access</li>
+            <li class="feature-item">Product reviews and ratings</li>
+            <li class="feature-item">Support ticket system</li>
+          </ul>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Order Portal</div>
+          <ul class="feature-list">
+            <li class="feature-item">POS checkout interface</li>
+            <li class="feature-item">Order management system</li>
+            <li class="feature-item">Real-time order tracking</li>
+            <li class="feature-item">Invoice generation & printing</li>
+            <li class="feature-item">Return request processing</li>
+            <li class="feature-item">Notification system</li>
+            <li class="feature-item">Promotional campaigns</li>
+            <li class="feature-item">Payment processing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
