@@ -17,10 +17,10 @@ const FEATURE_STATES = {
 // 1. To add a new feature: Add it to the features array with state: FEATURE_STATES.NOT_STARTED
 // 2. To update feature status: Change the 'state' value to one of:
 //    - FEATURE_STATES.NOT_STARTED (gray)
-//    - FEATURE_STATES.SOON (pink)
-//    - FEATURE_STATES.ONGOING (blue)
+//    - FEATURE_STATES.SOON (blue)
+//    - FEATURE_STATES.ONGOING (yellow)
 //    - FEATURE_STATES.COMPLETED (green with strikethrough)
-//    - FEATURE_STATES.ON_HOLD (orange)
+//    - FEATURE_STATES.ON_HOLD (red)
 // 3. Save the file after making changes
 // =============================================================================
 

@@ -1,3 +1,35 @@
+/* =============================================================================
+   COLOR VARIABLES - Feature State Colors
+   ============================================================================= */
+:root {
+    --color-not-started: #e2e8f0;
+    --color-soon: #9decf9; /* blue */
+    --color-ongoing: #fac794; /* yellow */
+    --color-completed: #9ae6b4; /* green */
+    --color-on-hold: #fbb6ce; /* red */
+
+    /* Darker variants for text */
+    --color-not-started-dark: #a0aec0;
+    --color-soon-dark: #0ea5e9;
+    --color-ongoing-dark: #dd6b20;
+    --color-completed-dark: #38a169;
+    --color-on-hold-dark: #ed64a6;
+
+    /* Light backgrounds */
+    --bg-not-started: #f7fafc;
+    --bg-soon: #b8f5ff;
+    --bg-ongoing: #feebc8;
+    --bg-completed: #c6f6d5;
+    --bg-on-hold: #fed7e2;
+
+    /* Text colors */
+    --text-not-started: #718096;
+    --text-soon: #0c4a6e;
+    --text-ongoing: #c05621;
+    --text-completed: #22543d;
+    --text-on-hold: #97266d;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -71,48 +103,23 @@ body {
 }
 
 .legend-color.not-started {
-    background: #e2e8f0;
+    background: var(--color-not-started);
 }
 
 .legend-color.soon {
-    background: #fbb6ce;
+    background: var(--color-soon);
 }
 
 .legend-color.ongoing {
-    background: #9decf9;
+    background: var(--color-ongoing);
 }
 
 .legend-color.completed {
-    background: #9ae6b4;
+    background: var(--color-completed);
 }
 
 .legend-color.on-hold {
-    background: #fac794;
-}
-
-.architecture {
-    background: #f7fafc;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 30px;
-    border-left: 4px solid #4299e1;
-}
-
-.architecture h3 {
-    color: #2d3748;
-    margin-bottom: 15px;
-    font-size: 1.2rem;
-}
-
-.module-structure {
-    font-family: "Courier New", monospace;
-    background: #2d3748;
-    color: #e2e8f0;
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    white-space: pre-line;
+    background: var(--color-on-hold);
 }
 
 .sections {
@@ -221,8 +228,6 @@ body {
     transition: all 0.3s ease;
     border-radius: 8px;
     margin-bottom: 6px;
-    cursor: pointer;
-    user-select: none;
     border: 2px solid transparent;
 }
 
@@ -234,63 +239,58 @@ body {
     font-weight: bold;
 }
 
-.feature-item:hover {
-    transform: translateX(5px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
 /* Feature States */
 .feature-item.not-started {
-    background: #f7fafc;
-    border-color: #e2e8f0;
-    color: #718096;
+    background: var(--bg-not-started);
+    border-color: var(--color-not-started);
+    color: var(--text-not-started);
 }
 
 .feature-item.soon {
-    background: #fed7e2;
-    border-color: #fbb6ce;
-    color: #97266d;
+    background: var(--bg-soon);
+    border-color: var(--color-soon);
+    color: var(--text-soon);
 }
 
 .feature-item.ongoing {
-    background: #b8f5ff;
-    border-color: #9decf9;
-    color: #0c4a6e;
+    background: var(--bg-ongoing);
+    border-color: var(--color-ongoing);
+    color: var(--text-ongoing);
 }
 
 .feature-item.completed {
-    background: #c6f6d5;
-    border-color: #9ae6b4;
-    color: #22543d;
+    background: var(--bg-completed);
+    border-color: var(--color-completed);
+    color: var(--text-completed);
     text-decoration: line-through;
-    text-decoration-color: #38a169;
+    text-decoration-color: var(--color-completed-dark);
     text-decoration-thickness: 2px;
 }
 
 .feature-item.on-hold {
-    background: #feebc8;
-    border-color: #fac794;
-    color: #c05621;
+    background: var(--bg-on-hold);
+    border-color: var(--color-on-hold);
+    color: var(--text-on-hold);
 }
 
 .feature-item.not-started::before {
-    color: #a0aec0;
+    color: var(--color-not-started-dark);
 }
 
 .feature-item.soon::before {
-    color: #ed64a6;
+    color: var(--color-soon-dark);
 }
 
 .feature-item.ongoing::before {
-    color: #0ea5e9;
+    color: var(--color-ongoing-dark);
 }
 
 .feature-item.completed::before {
-    color: #38a169;
+    color: var(--color-completed-dark);
 }
 
 .feature-item.on-hold::before {
-    color: #dd6b20;
+    color: var(--color-on-hold-dark);
 }
 
 .warning {
@@ -306,14 +306,6 @@ body {
 .warning::before {
     content: "⚠️ ";
     font-weight: bold;
-}
-
-.click-hint {
-    text-align: center;
-    color: #718096;
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-    font-style: italic;
 }
 
 .loading {
